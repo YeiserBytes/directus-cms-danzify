@@ -1,9 +1,5 @@
 FROM node:16-alpine
 
-WORKDIR /src
-
-ADD . ./src
-
 RUN rm -rf ./src/node_modules && rm -rf ./src/package-lock.json
 
 RUN npm set audit false
