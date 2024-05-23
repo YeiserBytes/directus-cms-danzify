@@ -4,8 +4,8 @@ FROM node:16-alpine
 RUN apk add --no-cache libc6-compat
 RUN apk update
 
-# install pnpm
-RUN wget -qO /bin/pnpm "https://github.com/pnpm/pnpm/releases/latest/download/pnpm-linuxstatic-x64" && chmod +x /bin/pnpm
+# Install pnpm
+RUN npm install -g pnpm
 
 # Configure pnpm global
 ENV PNPM_HOME=/pnpm-test/.pnpm
