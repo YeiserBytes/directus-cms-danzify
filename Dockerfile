@@ -4,7 +4,7 @@ WORKDIR /src
 
 ADD . ./src
 
-RUN npm i --production
+RUN npm i --omit=dev
 
 EXPOSE 8055
 
