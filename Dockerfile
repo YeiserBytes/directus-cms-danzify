@@ -1,17 +1,17 @@
-FROM node:16-alpine
+FROM node:alpine
 
-# Update
-RUN apk add --no-cache libc6-compat
+# Update-alpine
 RUN apk update
+RUN apk upgrade
 
-# Install pnpm
-RUN npm install -g pnpm
+# Create app directory
+WORKDIR /app
 
-# Configure pnpm global
-ENV PNPM_HOME=/pnpm-test/.pnpm
-ENV PATH=$PATH:$PNPM_HOME
+# Move to app directory
+COPY . .
 
-RUN pnpm i
+# Install packages
+RUN npm install
 
 EXPOSE 8055
 
