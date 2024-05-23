@@ -1,18 +1,23 @@
-FROM node:alpine
+# Usar la última imagen oficial de Node.js LTS
+FROM node:18-alpine
 
-# Update-alpine
-RUN apk update
-RUN apk upgrade
+# Instalar Python, make y g++ para node-gyp
+RUN apk add --no-cache python3 make g++
 
-# Create app directory
+# Crear y usar el directorio de la aplicación
 WORKDIR /app
 
-# Move to app directory
+# Copiar package.json y package-lock.json primero para aprovechar la caché de Docker
+COPY package*.json ./
+
+# Instalar solo dependencias de producción
+RUN npm ci --omit=dev
+
+# Copiar el resto del código de la aplicación
 COPY . .
 
-# Install packages
-RUN npm install
-
+# Exponer el puerto de la aplicación
 EXPOSE 8055
 
-CMD ["pnpm", "start"]
+# Iniciar la aplicación
+CMD ["npm", "start"]
