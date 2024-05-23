@@ -4,7 +4,13 @@ WORKDIR /src
 
 ADD . ./src
 
-RUN npm i --omit=dev
+RUN rm -rf ./src/node_modules && rm -rf ./src/package-lock.json
+
+RUN npm set audit false
+
+RUN npm cache clean --force
+
+RUN npm i
 
 EXPOSE 8055
 
