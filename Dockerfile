@@ -1,13 +1,18 @@
 FROM node:16-alpine
 
-RUN rm -rf ./src/node_modules && rm -rf ./src/package-lock.json
+# Update
+RUN apk add --no-cache libc6-compat
+RUN apk update
 
-RUN npm set audit false
+# install pnpm
+RUN wget -qO /bin/pnpm "https://github.com/pnpm/pnpm/releases/latest/download/pnpm-linuxstatic-x64" && chmod +x /bin/pnpm
 
-RUN npm cache clean --force
+# Configure pnpm global
+ENV PNPM_HOME=/pnpm-test/.pnpm
+ENV PATH=$PATH:$PNPM_HOME
 
-RUN npm i
+RUN pnpm i
 
 EXPOSE 8055
 
-CMD ["npm", "start"]
+CMD ["pnpm", "start"]
