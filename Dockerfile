@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 8055
 
 # Iniciar la aplicación
-CMD ["npm", " run start"]
+CMD ["npm", "start"]
