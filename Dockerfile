@@ -1,8 +1,8 @@
 FROM node:16-alpine
 
-WORKDIR /app
+WORKDIR /src
 
-ADD . ./app
+ADD . ./src
 
 RUN npm i --production
 
