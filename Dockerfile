@@ -7,8 +7,8 @@ WORKDIR /app
 # Copiar package.json y package-lock.json primero para aprovechar la caché de Docker
 COPY package*.json ./
 
-# Instalar solo dependencias de producción
-RUN npm ci --omit=dev
+# Instalar dependencias
+RUN npm install
 
 # Copiar el resto del código de la aplicación
 COPY . .
