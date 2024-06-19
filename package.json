@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "@directus/drive-gcs": "9.21.2",
-    "directus": "10.11.1",
-    "pg": "8.11.5"
+    "directus": "10.12.1",
+    "pg": "8.12.0"
   }
 }
